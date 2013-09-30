@@ -1,0 +1,70 @@
+<h2>Search for Users</h2>
+<form id="UserSearch" class="form-horizontal">
+    <div class="control-group">
+        <label for="email" class="control-label">Email</label>
+        <div class="controls">
+            <input id="email" name="email" type="text" ng-model="search.email" placeholder="Enter the User Email"></input>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="password" class="control-label">Password</label>
+        <div class="controls">
+            <input id="password" name="password" type="text" ng-model="search.password" placeholder="Enter the User Password"></input>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="bio" class="control-label">Bio</label>
+        <div class="controls">
+            <input id="bio" name="bio" type="text" ng-model="search.bio" placeholder="Enter the User Bio"></input>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="fullName" class="control-label">Full Name</label>
+        <div class="controls">
+            <input id="fullName" name="fullName" type="text" ng-model="search.fullName" placeholder="Enter the User Full Name"></input>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><i class="icon-search icon-white"></i> Search</a>
+            <a id="Create" name="Create" class="btn" href="#/Users/new"><i class="icon-plus-sign"></i> Create New</a>
+        </div>
+    </div>
+</form>
+<div id="search-results">
+    <table class="table table-bordered table-striped clearfix">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Registered On</th>
+                <th>Bio</th>
+                <th>Full Name</th>
+                <th>Date Of Birth</th>
+            </tr>
+        </thead>
+        <tbody id="search-results-body">
+            <tr ng-repeat="result in searchResults | searchFilter:searchResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                <td><a href="#/Users/edit/{{result.id}}">{{result.email}}</a></td>
+                <td><a href="#/Users/edit/{{result.id}}">{{result.password}}</a></td>
+                <td><a href="#/Users/edit/{{result.id}}">{{result.registeredOn| date:'mediumDate'}}</a></td>
+                <td><a href="#/Users/edit/{{result.id}}">{{result.bio}}</a></td>
+                <td><a href="#/Users/edit/{{result.id}}">{{result.fullName}}</a></td>
+                <td><a href="#/Users/edit/{{result.id}}">{{result.dateOfBirth| date:'mediumDate'}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pagination pagination-centered">
+        <ul>
+            <li ng-class="{disabled:currentPage == 0}">
+                <a id="prev" href ng-click="previous()">«</a>
+            </li>
+            <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+                <a href ng-bind="n + 1">1</a>
+            </li>
+            <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+                <a id="next" href ng-click="next()">»</a>
+            </li>
+        </ul>
+    </div>
+</div>

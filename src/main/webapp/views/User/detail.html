@@ -1,0 +1,49 @@
+<form id="UserForm" name="UserForm" class="form-horizontal">
+    <div ng-show="displayError" class="alert alert-error">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    <div class="control-group" ng-class="{error: UserForm.email.$invalid}">
+        <label for="email" class="control-label">Email</label>
+        <div id="emailControls" class="controls">
+            <input id="email" name="email" type="text" ng-model="user.email" placeholder="Enter the User Email"></input>
+        </div>
+    </div>
+    <div class="control-group" ng-class="{error: UserForm.password.$invalid}">
+        <label for="password" class="control-label">Password</label>
+        <div id="passwordControls" class="controls">
+            <input id="password" name="password" type="text" ng-model="user.password" placeholder="Enter the User Password"></input>
+        </div>
+    </div>
+    <div class="control-group" ng-class="{error: UserForm.registeredOn.$invalid}">
+        <label for="registeredOn" class="control-label">Registered On</label>
+        <div id="registeredOnControls" class="controls">
+            <input id="registeredOn" name="registeredOn" type="date" ng-model="user.registeredOn" placeholder="Enter the User Registered On"></input>
+        </div>
+    </div>
+    <div class="control-group" ng-class="{error: UserForm.bio.$invalid}">
+        <label for="bio" class="control-label">Bio</label>
+        <div id="bioControls" class="controls">
+            <input id="bio" name="bio" type="text" ng-maxlength="140" ng-model="user.bio" placeholder="Enter the User Bio"></input>
+            <span class="help-inline" ng-show="UserForm.bio.$error.maxlength">maximum length is 140</span>
+        </div>
+    </div>
+    <div class="control-group" ng-class="{error: UserForm.fullName.$invalid}">
+        <label for="fullName" class="control-label">Full Name</label>
+        <div id="fullNameControls" class="controls">
+            <input id="fullName" name="fullName" type="text" ng-model="user.fullName" placeholder="Enter the User Full Name"></input>
+        </div>
+    </div>
+    <div class="control-group" ng-class="{error: UserForm.dateOfBirth.$invalid}">
+        <label for="dateOfBirth" class="control-label">Date Of Birth</label>
+        <div id="dateOfBirthControls" class="controls">
+            <input id="dateOfBirth" name="dateOfBirth" type="date" ng-model="user.dateOfBirth" placeholder="Enter the User Date Of Birth"></input>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <button id="saveUser" name="saveUser" class="btn btn-primary" ng-disabled="isClean() || UserForm.$invalid" ng-click="save()"><i class="icon-ok-sign icon-white"></i> Save</button>
+            <button id="cancel" name="cancel" class="btn" ng-click="cancel()"><i class="icon-remove-sign"></i> Cancel</button>
+            <button id="deleteUser" name="deleteUser" class="btn btn-danger" ng-show="user.id" ng-click="remove()"><i class="icon-trash icon-white"></i> Delete</button>
+        </div>
+    <div>
+</form>

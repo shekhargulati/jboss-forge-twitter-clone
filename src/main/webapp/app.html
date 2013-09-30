@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" ng-app="twt">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Twt</title>
+    <link href="styles/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="styles/main.css" rel="stylesheet" media="screen">
+    <link href="styles/bootstrap-responsive.css" rel="stylesheet" media="screen">
+</head>
+<body>
+    <div id="wrap">
+    	
+    	<div class="navbar navbar-inverse navbar-fixed-top">
+    		<div class="navbar-inner">
+    			<div class="container">
+    				<a class="brand" href="#">Twt</a>
+    			</div>
+    		</div>
+    	</div>
+        
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3">
+                    <img class="hidden-phone" src="img/forge-logo.png" alt="JBoss Forge"></img>
+                    <nav class="well sidebar-nav" ng-controller="NavController">
+                        <ul id="sidebar-entries" class="nav nav-list">
+                        	<li ng-class="{active: matchesRoute('Tweets')}"><a href="#/Tweets">Tweets</a></li>
+                        	<li ng-class="{active: matchesRoute('Users')}"><a href="#/Users">Users</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="span9">
+                    <div id="main" class="well" ng-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="push"></div>
+    </div>
+    
+    <div id="footer">
+        <div class="container">
+            <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        </div>
+    </div>
+    
+    <script src="scripts/vendor/jquery-1.9.1.js"></script>
+    <script src="scripts/vendor/angular.js"></script>
+    <script src="scripts/vendor/angular-resource.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/filters/startFromFilter.js"></script>
+    <script src="scripts/filters/genericSearchFilter.js"></script>
+    <script src="scripts/services/locationParser.js"></script>
+    <script src="scripts/services/TweetFactory.js"></script>
+    <script src="scripts/controllers/newTweetController.js"></script>
+    <script src="scripts/controllers/searchTweetController.js"></script>
+    <script src="scripts/controllers/editTweetController.js"></script>
+    <script src="scripts/services/UserFactory.js"></script>
+    <script src="scripts/controllers/newUserController.js"></script>
+    <script src="scripts/controllers/searchUserController.js"></script>
+    <script src="scripts/controllers/editUserController.js"></script>
+</body>
+</html>

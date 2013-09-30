@@ -1,0 +1,22 @@
+clear
+set ACCEPT_DEFAULTS true
+new-project --named twt --topLevelPackage com.twt --finalName twt
+persistence setup --provider HIBERNATE --container JBOSS_AS7
+entity --named User
+field string --named email
+field string --named password
+field temporal --type DATE --named registeredOn
+field string --named bio --length 140
+field string --named fullName
+field temporal --type DATE --named dateOfBirth
+entity --named Tweet
+field string --named text --length 140
+field temporal --type DATE --named createdOn
+field manyToOne --named postedBy --fieldType com.twt.model.User.java --required true 
+cd ..
+rest setup --activatorType APP_CLASS
+rest endpoint-from-entity --contentType application/json com.twt.model.User.java
+rest endpoint-from-entity --contentType application/json com.twt.model.Tweet.java
+scaffold-x setup --scaffoldType angularjs 
+scaffold-x from *
+exit

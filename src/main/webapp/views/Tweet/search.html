@@ -1,0 +1,54 @@
+<h2>Search for Tweets</h2>
+<form id="TweetSearch" class="form-horizontal">
+    <div class="control-group">
+        <label for="text" class="control-label">Text</label>
+        <div class="controls">
+            <input id="text" name="text" type="text" ng-model="search.text" placeholder="Enter the Tweet Text"></input>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="postedBy" class="control-label">Posted By</label>
+        <div class="controls">
+            <select id="postedBy" name="postedBy" ng-model="search.postedBy" ng-options="p as p.id for p in postedByList">
+                <option value="">Choose a Posted By</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><i class="icon-search icon-white"></i> Search</a>
+            <a id="Create" name="Create" class="btn" href="#/Tweets/new"><i class="icon-plus-sign"></i> Create New</a>
+        </div>
+    </div>
+</form>
+<div id="search-results">
+    <table class="table table-bordered table-striped clearfix">
+        <thead>
+            <tr>
+                <th>Text</th>
+                <th>Created On</th>
+                <th>Posted By</th>
+            </tr>
+        </thead>
+        <tbody id="search-results-body">
+            <tr ng-repeat="result in searchResults | searchFilter:searchResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                <td><a href="#/Tweets/edit/{{result.id}}">{{result.text}}</a></td>
+                <td><a href="#/Tweets/edit/{{result.id}}">{{result.createdOn| date:'mediumDate'}}</a></td>
+                    <td><a href="#/Tweets/edit/{{result.id}}">{{result.postedBy.id}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pagination pagination-centered">
+        <ul>
+            <li ng-class="{disabled:currentPage == 0}">
+                <a id="prev" href ng-click="previous()">«</a>
+            </li>
+            <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+                <a href ng-bind="n + 1">1</a>
+            </li>
+            <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+                <a id="next" href ng-click="next()">»</a>
+            </li>
+        </ul>
+    </div>
+</div>
